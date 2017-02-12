@@ -60,7 +60,14 @@ class LoginViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         if AppFactory.shared.getCurrentUserToken() != nil {
-            self.performSegue(withIdentifier: Constants.Segue.LoginToAreaNoAnimation, sender: nil)
+            if #available(iOS 9.0, *) {
+                self.performSegue(withIdentifier: Constants.Segue.LoginToAreaNoAnimation, sender: nil)
+            }
+            else {
+                let storyBoard = UIStoryboard(name: Constants.Storyboards.Main, bundle: nil)
+                let controller = storyBoard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.AreaViewController)
+                self.navigationController?.pushViewController(controller, animated: false)
+            }
         }
     }
     

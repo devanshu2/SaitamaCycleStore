@@ -11,8 +11,8 @@ target 'SaitamaCycleRent' do
   pod 'MBProgressHUD'
   pod 'Gloss'
   pod 'GoogleMaps'
-  pod 'GooglePlaces'
-  pod 'Google-Maps-iOS-Utils'
+  #pod 'GooglePlaces'
+  #pod 'Google-Maps-iOS-Utils'
 
   target 'SaitamaCycleRentTests' do
     inherit! :search_paths

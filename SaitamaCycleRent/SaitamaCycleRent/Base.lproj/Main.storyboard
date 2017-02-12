@@ -14,7 +14,7 @@
         <scene sceneID="P3O-cB-Bm4">
             <objects>
                 <navigationController id="py8-JO-Cfh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jE4-9h-aLw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jE4-9h-aLw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -43,7 +43,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoginSignupCombinedCell" id="m1z-MQ-BQb" customClass="LoginSignupCombinedCell" customModule="SaitamaCycleRent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1z-MQ-BQb" id="l73-za-79q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -97,7 +97,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoginInputCell" rowHeight="92" id="wcZ-gX-BWM" customClass="LoginInputCell" customModule="SaitamaCycleRent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="92"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcZ-gX-BWM" id="hxG-NV-nbc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
@@ -187,7 +187,7 @@
         <!--Area View Controller-->
         <scene sceneID="B1P-NP-eP8">
             <objects>
-                <viewController id="vAh-fk-mOM" customClass="AreaViewController" customModule="SaitamaCycleRent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="areaViewController" id="vAh-fk-mOM" customClass="AreaViewController" customModule="SaitamaCycleRent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oo3-KX-VPz"/>
                         <viewControllerLayoutGuide type="bottom" id="tcP-rV-eoD"/>

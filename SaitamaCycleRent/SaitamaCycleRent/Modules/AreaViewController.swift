@@ -11,19 +11,24 @@ import MBProgressHUD
 import GoogleMaps
 
 class AreaViewController: BaseViewController {
-    
     fileprivate lazy var placesModel = Places()
+    fileprivate var mapView: GMSMapView!
+    fileprivate var clusterManager: GMUClusterManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Set up the cluster manager with default icon generator and renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
     }
     
     override func loadView() {
         let camera = GMSCameraPosition.camera(withLatitude: 35.7574465, longitude: 139.6833125, zoom: 10.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        self.view = mapView
+        self.mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        self.view = self.mapView
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,11 +57,16 @@ class AreaViewController: BaseViewController {
                 if places != nil {
                     //success
                     if weakSelf != nil {
-                        let mapView = self.view as! GMSMapView
-                        mapView.clear()
+                        self.mapView.clear()
                         for place in places! {
-                            let marker = PlaceMarker(withPlace: place)
-                            marker.map = mapView
+                            let item = PlaceMarker(withPlace: place)
+                            self.clusterManager.add(item)
+                            
+                            // Call cluster() after items have been added to perform the clustering and rendering on map.
+                            self.clusterManager.cluster()
+                            
+                            // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
+                            self.clusterManager.setDelegate(self, mapDelegate: self)
                         }
                     }
                 }
@@ -74,4 +84,38 @@ class AreaViewController: BaseViewController {
         }
     }
     
+    fileprivate func promptRent(withID id:String, andTitle title:String) {
+        weak var weakSelf = self
+        let alert = UIAlertController(title: title, message: NSLocalizedString("Do you want to rent?", comment: "Saitama"), preferredStyle: .alert)
+        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Saitama"), style: .default) { (yesAction) in
+            
+        }
+        let no = UIAlertAction(title: NSLocalizedString("No", comment: "Saitama"), style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension AreaViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        if let poiItem = marker.userData as? PlaceMarker {
+            self.promptRent(withID: poiItem.id!, andTitle: poiItem.name!)
+            NSLog("Did tap marker for cluster item \(poiItem.name)")
+            return true
+        } else {
+            NSLog("Did tap a normal marker")
+        }
+        return false
+    }
+}
+
+extension AreaViewController: GMUClusterManagerDelegate {
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+        let newCamera = GMSCameraPosition.camera(withTarget: cluster.position,
+                                                 zoom: self.mapView.camera.zoom + 1)
+        let update = GMSCameraUpdate.setCamera(newCamera)
+        self.mapView.moveCamera(update)
+        return false
+    }
 }

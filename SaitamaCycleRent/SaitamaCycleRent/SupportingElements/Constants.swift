@@ -31,7 +31,7 @@ public struct Constants {
     }
     
     struct ViewControllerIdentifiers {
-        
+        static let AreaViewController = "areaViewController"
     }
     
     struct Segue {

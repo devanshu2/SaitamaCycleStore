@@ -10,12 +10,13 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
-public class PlaceMarker: GMSMarker {
+public class PlaceMarker: NSObject, GMUClusterItem {
     public var id:String?
-    convenience init(withPlace place:Place) {
-        self.init()
+    public var name: String!
+    public var position: CLLocationCoordinate2D
+    init(withPlace place:Place) {
         self.position = place.location!
-        self.title = place.name
+        self.name = place.name
         self.id = place.id
     }
 }
