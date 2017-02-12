@@ -35,7 +35,8 @@ public struct Constants {
     }
     
     struct Segue {
-        
+        static let LoginToArea = "loginToArea"
+        static let LoginToAreaNoAnimation = "loginToAreaNoAnimation"
     }
     
     struct API {

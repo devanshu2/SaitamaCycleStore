@@ -25,10 +25,8 @@ public class NetworkManger: NSObject {
     
     public func getDefaultHeaders() -> [String: String]? {
         var headerParams: Dictionary<String, String>?
-        if let userData = AppFactory.shared.getCurrentUser() {
-            if userData.accessToken != nil {
-                headerParams = [Constants.kAuthorization: userData.accessToken!]
-            }
+        if let accessToken = AppFactory.shared.getCurrentUserToken() {
+            headerParams = [Constants.kAuthorization: accessToken]
         }
         return headerParams
     }

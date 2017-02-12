@@ -59,6 +59,9 @@ class LoginViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        if AppFactory.shared.getCurrentUserToken() != nil {
+            self.performSegue(withIdentifier: Constants.Segue.LoginToAreaNoAnimation, sender: nil)
+        }
     }
     
     // MARK: - Actions
@@ -88,6 +91,10 @@ class LoginViewController: BaseViewController {
                 weakSelf?.hideLoaderOnMainThread()
                 if accessToken != nil {
                     //success
+                    if weakSelf != nil {
+                        AppFactory.shared.setUserToken(accessToken!)
+                        weakSelf?.performSegue(withIdentifier: Constants.Segue.LoginToArea, sender: nil)
+                    }
                 }
                 else {
                     if errorMessage != nil {
@@ -127,6 +134,16 @@ class LoginViewController: BaseViewController {
                 weakSelf?.hideLoaderOnMainThread()
                 if accessToken != nil {
                     //success
+                    if weakSelf != nil {
+                        AppFactory.shared.setUserToken(accessToken!)
+                        DispatchQueue.main.async(execute: {
+                            let alert = UIAlertController(title: nil, message: NSLocalizedString("User registration successfull", comment: "Login"), preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Login"), style: .default, handler: { (action) in
+                                weakSelf?.performSegue(withIdentifier: Constants.Segue.LoginToArea, sender: nil)
+                            }))
+                            weakSelf?.present(alert, animated: true, completion: nil)
+                        })
+                    }
                 }
                 else {
                     if errorMessage != nil {

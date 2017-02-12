@@ -14,7 +14,7 @@
         <scene sceneID="P3O-cB-Bm4">
             <objects>
                 <navigationController id="py8-JO-Cfh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jE4-9h-aLw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jE4-9h-aLw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -176,11 +176,34 @@
                     <navigationItem key="navigationItem" id="qUL-sN-Jva"/>
                     <connections>
                         <outlet property="contentTable" destination="Hjn-mV-VJq" id="ncc-4w-mUf"/>
+                        <segue destination="vAh-fk-mOM" kind="show" identifier="loginToArea" id="h6D-Sv-uzP"/>
+                        <segue destination="vAh-fk-mOM" kind="show" identifier="loginToAreaNoAnimation" animates="NO" id="ovA-46-BeM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="135.38230884557723"/>
         </scene>
+        <!--Area View Controller-->
+        <scene sceneID="B1P-NP-eP8">
+            <objects>
+                <viewController id="vAh-fk-mOM" customClass="AreaViewController" customModule="SaitamaCycleRent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oo3-KX-VPz"/>
+                        <viewControllerLayoutGuide type="bottom" id="tcP-rV-eoD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="48z-ce-PKp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mny-Sq-ITO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1002" y="140"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ovA-46-BeM"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -23,11 +23,19 @@ public class AppFactory: NSObject {
     }
     
     public func signOutUser() {
-        
+        UserDefaults.standard.removeObject(forKey: Constants.kAccessToken)
+        UserDefaults.standard.synchronize()
     }
     
-    public func getCurrentUser() -> User? {
-        
+    public func setUserToken(_ token:String) {
+        UserDefaults.standard.set(token, forKey: Constants.kAccessToken)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public func getCurrentUserToken() -> String? {
+        if let token = UserDefaults.standard.value(forKey: Constants.kAccessToken) as? String {
+            return token
+        }
         return nil
     }
 }

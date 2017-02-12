@@ -24,6 +24,7 @@
 		424054D01E508D1C00F1C46D /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054CF1E508D1C00F1C46D /* BaseModel.swift */; };
 		424054D21E50975F00F1C46D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054D11E50975F00F1C46D /* BaseViewController.swift */; };
 		424054D41E509C6D00F1C46D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054D31E509C6D00F1C46D /* LoginViewController.swift */; };
+		424054D61E50E01A00F1C46D /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054D51E50E01A00F1C46D /* AreaViewController.swift */; };
 		42D11CDC1E50559F0070AF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CDB1E50559F0070AF86 /* AppDelegate.swift */; };
 		42D11CE11E50559F0070AF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CDF1E50559F0070AF86 /* Main.storyboard */; };
 		42D11CE41E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CE21E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld */; };
@@ -59,6 +60,7 @@
 		424054CF1E508D1C00F1C46D /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		424054D11E50975F00F1C46D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		424054D31E509C6D00F1C46D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		424054D51E50E01A00F1C46D /* AreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
 		42D11CD81E50559F0070AF86 /* SaitamaCycleRent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaitamaCycleRent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D11CDB1E50559F0070AF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D11CE01E50559F0070AF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				424054D11E50975F00F1C46D /* BaseViewController.swift */,
 				424054D31E509C6D00F1C46D /* LoginViewController.swift */,
+				424054D51E50E01A00F1C46D /* AreaViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				424054C61E505A0A00F1C46D /* UIView.swift in Sources */,
 				424054C31E505A0A00F1C46D /* String.swift in Sources */,
 				424054D01E508D1C00F1C46D /* BaseModel.swift in Sources */,
+				424054D61E50E01A00F1C46D /* AreaViewController.swift in Sources */,
 				424054B51E5058C600F1C46D /* AppFactory.swift in Sources */,
 				424054CE1E50892F00F1C46D /* User.swift in Sources */,
 				42D11CDC1E50559F0070AF86 /* AppDelegate.swift in Sources */,
