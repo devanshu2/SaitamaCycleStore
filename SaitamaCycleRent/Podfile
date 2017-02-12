@@ -12,6 +12,7 @@ target 'SaitamaCycleRent' do
   pod 'Gloss'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Google-Maps-iOS-Utils'
 
   target 'SaitamaCycleRentTests' do
     inherit! :search_paths

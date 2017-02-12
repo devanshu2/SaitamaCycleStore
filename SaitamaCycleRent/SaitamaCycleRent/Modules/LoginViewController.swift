@@ -64,6 +64,12 @@ class LoginViewController: BaseViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.userModel.clearCredentials()
+        self.pageState = .welcome
+        super.viewWillDisappear(animated)
+    }
+    
     // MARK: - Actions
     @objc fileprivate func handleActionForWelcomeRegisterButton(_ sender:Any?) {
         self.activeTextField?.resignFirstResponder()
@@ -137,7 +143,7 @@ class LoginViewController: BaseViewController {
                     if weakSelf != nil {
                         AppFactory.shared.setUserToken(accessToken!)
                         DispatchQueue.main.async(execute: {
-                            let alert = UIAlertController(title: nil, message: NSLocalizedString("User registration successfull", comment: "Login"), preferredStyle: .alert)
+                            let alert = UIAlertController(title: nil, message: NSLocalizedString("User registration successful", comment: "Login"), preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Login"), style: .default, handler: { (action) in
                                 weakSelf?.performSegue(withIdentifier: Constants.Segue.LoginToArea, sender: nil)
                             }))
@@ -184,22 +190,6 @@ class LoginViewController: BaseViewController {
     fileprivate func hideLoaderOnMainThread() {
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)
-        }
-    }
-    
-    fileprivate func displayError(withMessage message:String, retrySelector:Selector?) {
-        DispatchQueue.main.async {
-            weak var weakSelf = self
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Login"), message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Login"), style: .default, handler: nil))
-            if retrySelector != nil {
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: "Login"), style: .default, handler: { (action) in
-                    if weakSelf != nil {
-                        weakSelf!.perform(retrySelector!)
-                    }
-                }))
-            }
-            self.present(alert, animated: true, completion: nil)
         }
     }
 }

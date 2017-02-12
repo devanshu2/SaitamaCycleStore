@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import MBProgressHUD
+import GoogleMaps
 
 class AreaViewController: BaseViewController {
-
+    
+    fileprivate lazy var placesModel = Places()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func loadView() {
+        let camera = GMSCameraPosition.camera(withLatitude: 35.7574465, longitude: 139.6833125, zoom: 10.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        self.view = mapView
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +33,7 @@ class AreaViewController: BaseViewController {
         self.navigationItem.hidesBackButton = true
         self.title = NSLocalizedString("Store", comment: "Saitama")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(self.logoutUser))
+        self.fetchPlaces()
     }
     
     @objc private func logoutUser() {
@@ -30,4 +41,37 @@ class AreaViewController: BaseViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
 
+    @objc private func fetchPlaces() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        weak var weakSelf = self
+        self.placesModel.getPlaces { (places, error, errorMessage) in
+            DispatchQueue.main.async(execute: {
+                if weakSelf != nil {
+                    MBProgressHUD.hide(for: (weakSelf?.view)!, animated: true)
+                }
+                if places != nil {
+                    //success
+                    if weakSelf != nil {
+                        let mapView = self.view as! GMSMapView
+                        mapView.clear()
+                        for place in places! {
+                            let marker = PlaceMarker(withPlace: place)
+                            marker.map = mapView
+                        }
+                    }
+                }
+                else {
+                    if errorMessage != nil {
+                        self.displayError(withMessage: errorMessage!, retrySelector: nil)
+                    }
+                    else {
+                        self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.fetchPlaces))
+                    }
+                }
+            })
+            
+            
+        }
+    }
+    
 }

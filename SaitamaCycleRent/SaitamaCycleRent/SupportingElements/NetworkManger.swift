@@ -51,6 +51,7 @@ public class NetworkManger: NSObject {
             request.httpBody = data
         } catch {
             debugPrint(error.localizedDescription)
+            completionHandler(nil, nil, error)
             return
         }
         
@@ -61,7 +62,6 @@ public class NetworkManger: NSObject {
             if error != nil {
                 debugPrint(error!.localizedDescription)
             }
-            
             completionHandler(data, response, error)
         }
         self.networkDataTask?.resume()
@@ -77,7 +77,7 @@ public class NetworkManger: NSObject {
         self.postData(withParameters: params, apiEndpoint: apiURL, withHeaderParams: headerData, completionHandler: completionHandler)
     }
     
-    public func getData(withParameters params:Dictionary<String, String>, apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+    public func getData(apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
         var request = URLRequest(url: apiURL)
         if let defaultHeaders = getDefaultHeaders() {
             for (key, value) in defaultHeaders {
@@ -86,13 +86,6 @@ public class NetworkManger: NSObject {
         }
         
         request.httpMethod = Constants.kGet
-        do {
-            let jsonParamsData = try JSONSerialization.data(withJSONObject: params, options: [])
-            request.httpBody = jsonParamsData
-        } catch {
-            debugPrint(error.localizedDescription)
-            return
-        }
         
         if self.networkSession == nil {
             self.networkSession = URLSession(configuration: getSharedConfiguration(false))
@@ -101,8 +94,6 @@ public class NetworkManger: NSObject {
             if error != nil {
                 debugPrint(error!.localizedDescription)
             }
-            
-            
             completionHandler(data, response, error)
         }
         self.networkDataTask?.resume()

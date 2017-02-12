@@ -8,12 +8,28 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+public class BaseViewController: UIViewController {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    public func displayError(withMessage message:String, retrySelector:Selector?) {
+        DispatchQueue.main.async {
+            weak var weakSelf = self
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Login"), message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Login"), style: .default, handler: nil))
+            if retrySelector != nil {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: "Login"), style: .default, handler: { (action) in
+                    if weakSelf != nil {
+                        weakSelf!.perform(retrySelector!)
+                    }
+                }))
+            }
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

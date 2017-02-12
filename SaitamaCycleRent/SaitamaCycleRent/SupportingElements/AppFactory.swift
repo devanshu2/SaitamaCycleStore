@@ -8,7 +8,6 @@
 
 import Foundation
 import GoogleMaps
-import GooglePlaces
 
 public class AppFactory: NSObject {
     
@@ -19,7 +18,6 @@ public class AppFactory: NSObject {
     
     public func configureGoogleMapsOnAppStart(forApplication application: UIApplication) {
         GMSServices.provideAPIKey(Constants.Google.APIKey)
-        GMSPlacesClient.provideAPIKey(Constants.Google.APIKey)
     }
     
     public func signOutUser() {
