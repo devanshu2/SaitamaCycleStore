@@ -38,7 +38,13 @@ class AreaViewController: BaseViewController {
         self.navigationItem.hidesBackButton = true
         self.title = NSLocalizedString("Store", comment: "Saitama")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(self.logoutUser))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "reload"), style: .plain, target: self, action: #selector(self.fetchPlaces))
         self.fetchPlaces()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.placesModel.cancelActiveAPICallTask()
+        super.viewWillDisappear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +58,7 @@ class AreaViewController: BaseViewController {
     }
 
     @objc private func fetchPlaces() {
+        self.placesModel.cancelActiveAPICallTask()
         MBProgressHUD.showAdded(to: self.view, animated: true)
         weak var weakSelf = self
         self.placesModel.getPlaces { (places, error, errorMessage) in
@@ -62,17 +69,17 @@ class AreaViewController: BaseViewController {
                 if places != nil {
                     //success
                     if weakSelf != nil {
-                        self.mapView.clear()
+                        weakSelf?.mapView.clear()
+                        weakSelf?.clusterManager.clearItems()
                         for place in places! {
                             let item = PlaceMarker(withPlace: place)
-                            self.clusterManager.add(item)
-                            
-                            // Call cluster() after items have been added to perform the clustering and rendering on map.
-                            self.clusterManager.cluster()
-                            
-                            // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
-                            self.clusterManager.setDelegate(self, mapDelegate: self)
+                            weakSelf?.clusterManager.add(item)
                         }
+                        // Call cluster() after items have been added to perform the clustering and rendering on map.
+                        weakSelf?.clusterManager.cluster()
+                        
+                        // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
+                        weakSelf?.clusterManager.setDelegate(weakSelf, mapDelegate: weakSelf)
                     }
                 }
                 else {
@@ -80,7 +87,9 @@ class AreaViewController: BaseViewController {
                         self.displayError(withMessage: errorMessage!, retrySelector: nil)
                     }
                     else {
-                        self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.fetchPlaces))
+                        if ((error?._code != NSURLErrorUnknown) && (error?._code != NSURLErrorCancelled)) {
+                            self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.fetchPlaces))
+                        }
                     }
                 }
             })

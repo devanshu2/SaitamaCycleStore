@@ -35,6 +35,11 @@ class PaymentViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.popController))
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.paymentModel.cancelActiveAPICallTask()
+        super.viewWillDisappear(animated)
+    }
+    
     @objc private func popController() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -56,7 +61,9 @@ class PaymentViewController: BaseViewController {
                         self.displayError(withMessage: errorMessage!, retrySelector: nil)
                     }
                     else {
-                        self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.payNow(_:)))
+                        if ((error?._code != NSURLErrorUnknown) && (error?._code != NSURLErrorCancelled)) {
+                            self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.payNow(_:)))
+                        }
                     }
                 }
             })

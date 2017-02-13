@@ -69,6 +69,7 @@ class LoginViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.userModel.clearCredentials()
+        self.userModel.cancelActiveAPICallTask()
         self.pageState = .welcome
         super.viewWillDisappear(animated)
     }
@@ -110,7 +111,9 @@ class LoginViewController: BaseViewController {
                         self.displayError(withMessage: errorMessage!, retrySelector: nil)
                     }
                     else {
-                        self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.authenticateUser))
+                        if ((error?._code != NSURLErrorUnknown) && (error?._code != NSURLErrorCancelled)) {
+                            self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.authenticateUser))
+                        }
                     }
                 }
             })
@@ -159,7 +162,9 @@ class LoginViewController: BaseViewController {
                         self.displayError(withMessage: errorMessage!, retrySelector: nil)
                     }
                     else {
-                        self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.authenticateUser))
+                        if ((error?._code != NSURLErrorUnknown) && (error?._code != NSURLErrorCancelled)) {
+                            self.displayError(withMessage: NSLocalizedString("Network Error.", comment: "Saitama"), retrySelector: #selector(self.authenticateUser))
+                        }
                     }
                 }
             })

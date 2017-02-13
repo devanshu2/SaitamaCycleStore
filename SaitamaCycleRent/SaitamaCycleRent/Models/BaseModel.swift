@@ -11,4 +11,8 @@ import Foundation
 public class BaseModel: NSObject {
     public lazy var apiManager = NetworkManger()
     public var accessToken:String?
+    
+    public func cancelActiveAPICallTask() {
+        self.apiManager.cancelActiveTask()
+    }
 }
