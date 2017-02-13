@@ -44,8 +44,6 @@
 		<string>googlechromes</string>
 		<string>comgooglemaps</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need to know where you are</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
