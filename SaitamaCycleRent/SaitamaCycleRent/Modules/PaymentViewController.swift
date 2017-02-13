@@ -54,8 +54,13 @@ class PaymentViewController: BaseViewController {
             let selectedYear = self.picker.selectedYear
             let last2 = selectedYear.substring(from:selectedYear.index(selectedYear.endIndex, offsetBy: -2))
             self.paymentModel.expirationMonth = selectedMonth
-            self.paymentModel.expirationYear = selectedYear
-            self.contentTable.reloadData()
+            self.paymentModel.expirationYear = last2
+            if self.paymentModel.expiration == nil {
+                self.displayError(withMessage: NSLocalizedString("Please provide valid expiry date.", comment: "Payment"), retrySelector: nil)
+            }
+            else {
+               self.contentTable.reloadData()
+            }
         }
         self.activeTextField?.resignFirstResponder()
     }
@@ -63,7 +68,7 @@ class PaymentViewController: BaseViewController {
     private func callSuccessMessage() {
         DispatchQueue.main.async {
             weak var weakSelf = self
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("Rented!!", comment: "Payment"), preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Rented Successfully!!", comment: "Payment"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Payment"), style: .default, handler: { (action) in
                 weakSelf?.popController()
             }))
