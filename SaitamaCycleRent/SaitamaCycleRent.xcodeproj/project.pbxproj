@@ -45,7 +45,6 @@
 		429A69DC1E51877E00A211BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429A69DE1E51877E00A211BD /* Localizable.strings */; };
 		42D11CDC1E50559F0070AF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CDB1E50559F0070AF86 /* AppDelegate.swift */; };
 		42D11CE11E50559F0070AF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CDF1E50559F0070AF86 /* Main.storyboard */; };
-		42D11CE41E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CE21E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld */; };
 		42D11CE61E50559F0070AF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CE51E50559F0070AF86 /* Assets.xcassets */; };
 		42D11CE91E50559F0070AF86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CE71E50559F0070AF86 /* LaunchScreen.storyboard */; };
 		42D11CF41E50559F0070AF86 /* SaitamaCycleRentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CF31E50559F0070AF86 /* SaitamaCycleRentTests.swift */; };
@@ -119,17 +118,17 @@
 		429A69C41E51118400A211BD /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		429A69C61E511AB200A211BD /* CCDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCDatePickerView.swift; sourceTree = "<group>"; };
 		429A69C81E5135C500A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		429A69C91E5135C500A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		429A69D41E5136F200A211BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429A69D61E5136F300A211BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429A69D71E5136F400A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		429A69DD1E51877E00A211BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		429A69DF1E51878000A211BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		429A69E01E51878100A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		429A69E11E518EB300A211BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		429A69E31E518EB500A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		42D11CD81E50559F0070AF86 /* SaitamaCycleRent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaitamaCycleRent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D11CDB1E50559F0070AF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D11CE01E50559F0070AF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		42D11CE31E50559F0070AF86 /* SaitamaCycleRent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SaitamaCycleRent.xcdatamodel; sourceTree = "<group>"; };
 		42D11CE51E50559F0070AF86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42D11CE81E50559F0070AF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42D11CEA1E50559F0070AF86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,7 +180,6 @@
 				42D11CE51E50559F0070AF86 /* Assets.xcassets */,
 				42D11CE71E50559F0070AF86 /* LaunchScreen.storyboard */,
 				42D11CEA1E50559F0070AF86 /* Info.plist */,
-				42D11CE21E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld */,
 				424054B11E5058C600F1C46D /* AppFactory.swift */,
 				424054B21E5058C600F1C46D /* Constants.swift */,
 				424054CA1E50868700F1C46D /* NetworkManger.swift */,
@@ -610,7 +608,6 @@
 				42D11CDC1E50559F0070AF86 /* AppDelegate.swift in Sources */,
 				429A69C71E511AB200A211BD /* CCDatePickerView.swift in Sources */,
 				424054C51E505A0A00F1C46D /* UIColor.swift in Sources */,
-				42D11CE41E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld in Sources */,
 				424054C41E505A0A00F1C46D /* UIApplication.swift in Sources */,
 				424054D41E509C6D00F1C46D /* LoginViewController.swift in Sources */,
 				429A69C31E510F8000A211BD /* PaymentViewController.swift in Sources */,
@@ -675,7 +672,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				42D11CE81E50559F0070AF86 /* Base */,
-				429A69C91E5135C500A211BD /* ja */,
+				429A69E11E518EB300A211BD /* en */,
+				429A69E31E518EB500A211BD /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -875,19 +873,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		42D11CE21E50559F0070AF86 /* SaitamaCycleRent.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				42D11CE31E50559F0070AF86 /* SaitamaCycleRent.xcdatamodel */,
-			);
-			currentVersion = 42D11CE31E50559F0070AF86 /* SaitamaCycleRent.xcdatamodel */;
-			path = SaitamaCycleRent.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 42D11CD01E50559F0070AF86 /* Project object */;
 }
