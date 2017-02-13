@@ -20,6 +20,8 @@ public struct Constants {
     struct Restrictions {
         static let email = 128
         static let password = 32
+        static let ccNumber = 16
+        static let ccCode = 3
     }
     
     struct Storyboards {
@@ -37,6 +39,7 @@ public struct Constants {
     struct Segue {
         static let LoginToArea = "loginToArea"
         static let LoginToAreaNoAnimation = "loginToAreaNoAnimation"
+        static let AreaToPay = "areaToPay"
     }
     
     struct API {
@@ -87,7 +90,7 @@ public struct Constants {
         static let GeneralHeaderCell = "hCell"
         static let GeneralTableCell = "cell"
         static let LoginSignupCombinedCell = "LoginSignupCombinedCell"
-        static let LoginInputCell = "LoginInputCell"
+        static let InputCell = "InputCell"
     }
     
     struct General {

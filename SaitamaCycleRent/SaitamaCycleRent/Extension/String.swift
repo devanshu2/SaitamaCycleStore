@@ -74,6 +74,15 @@ extension String {
         return randomString
     }
     
+    func isNumeric() -> Bool {
+        let badCharacters = CharacterSet.decimalDigits.inverted
+        if self.rangeOfCharacter(from: badCharacters) == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func textRect(withFont font: UIFont) -> CGRect {
         return self.textRect(withFont: font, andWidth: CGFloat.greatestFiniteMagnitude, andHeight: CGFloat.greatestFiniteMagnitude)
     }

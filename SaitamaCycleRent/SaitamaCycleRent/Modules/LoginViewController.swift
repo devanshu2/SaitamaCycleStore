@@ -35,11 +35,6 @@ class LoginSignupCombinedCell: UITableViewCell {
     }
 }
 
-class LoginInputCell: UITableViewCell {
-    @IBOutlet weak var leftLabel:UILabel!
-    @IBOutlet weak var rightTextField:UITextField!
-}
-
 class LoginViewController: BaseViewController {
 
     public var pageState = LoginPageState.welcome
@@ -54,6 +49,7 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.contentTable.register(UINib(nibName: "TextInputTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier.InputCell)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -187,18 +183,6 @@ class LoginViewController: BaseViewController {
             self.displayError(withMessage: NSLocalizedString("Unknown Error Occured.", comment: "Login"), retrySelector: #selector(self.registerUser))
         }
     }
-    
-    fileprivate func showLoaderOnMainThread() {
-        DispatchQueue.main.async {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-        }
-    }
-    
-    fileprivate func hideLoaderOnMainThread() {
-        DispatchQueue.main.async {
-            MBProgressHUD.hide(for: self.view, animated: true)
-        }
-    }
 }
 
 extension LoginViewController: UITableViewDataSource {
@@ -270,8 +254,8 @@ extension LoginViewController: UITableViewDataSource {
         }
     }
     
-    private func getInputCell(forTable tableView:UITableView, andIndexPath indexPath:IndexPath) -> LoginInputCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier.LoginInputCell) as! LoginInputCell
+    private func getInputCell(forTable tableView:UITableView, andIndexPath indexPath:IndexPath) -> TextInputTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier.InputCell) as! TextInputTableViewCell
         cell.rightTextField.text = ""
         if indexPath.row == 0 {
             cell.rightTextField.keyboardType = .emailAddress
@@ -374,6 +358,23 @@ extension LoginViewController: UITableViewDelegate {
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentCharacterCount = textField.text?.characters.count ?? 0
+        if (range.length + range.location > currentCharacterCount){
+            return false
+        }
+        let newLength = currentCharacterCount + string.characters.count - range.length
+        
+        if textField.tag == 0 {
+            return newLength <= Constants.Restrictions.email
+        }
+        else if textField.tag == 1 {
+            return newLength <= Constants.Restrictions.email
+        }
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
     }

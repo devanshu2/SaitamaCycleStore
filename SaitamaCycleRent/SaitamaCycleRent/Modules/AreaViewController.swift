@@ -41,6 +41,11 @@ class AreaViewController: BaseViewController {
         self.fetchPlaces()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! PaymentViewController
+        destinationVC.rentID = sender as? String
+    }
+    
     @objc private func logoutUser() {
         AppFactory.shared.signOutUser()
         self.navigationController?.popToRootViewController(animated: true)
@@ -88,7 +93,7 @@ class AreaViewController: BaseViewController {
         weak var weakSelf = self
         let alert = UIAlertController(title: title, message: NSLocalizedString("Do you want to rent?", comment: "Saitama"), preferredStyle: .alert)
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Saitama"), style: .default) { (yesAction) in
-            
+            self.performSegue(withIdentifier: Constants.Segue.AreaToPay, sender: id)
         }
         let no = UIAlertAction(title: NSLocalizedString("No", comment: "Saitama"), style: .cancel, handler: nil)
         alert.addAction(yes)

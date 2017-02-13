@@ -16,6 +16,13 @@ enum UserAuthenticationCallError: Error {
     case largePassword
 }
 
+enum RentPaymentCallError: Error {
+    case invalidNumber
+    case blankName
+    case invalidExpiry
+    case invalidCode
+}
+
 enum UserRegisterCallError: Error {
     case blankEmail
     case largeEmail

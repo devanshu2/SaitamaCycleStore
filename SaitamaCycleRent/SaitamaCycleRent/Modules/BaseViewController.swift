@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 public class BaseViewController: UIViewController {
 
@@ -30,6 +31,18 @@ public class BaseViewController: UIViewController {
                 }))
             }
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    public func showLoaderOnMainThread() {
+        DispatchQueue.main.async {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+    }
+    
+    public func hideLoaderOnMainThread() {
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
 }
