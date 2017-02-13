@@ -6,13 +6,8 @@ target 'SaitamaCycleRent' do
   use_frameworks!
 
   # Pods for SaitamaCycleRent
-  pod 'INSPersistentContainer'
-  pod 'SDWebImage'
   pod 'MBProgressHUD'
-  pod 'Gloss'
   pod 'GoogleMaps'
-  #pod 'GooglePlaces'
-  #pod 'Google-Maps-iOS-Utils'
 
   target 'SaitamaCycleRentTests' do
     inherit! :search_paths

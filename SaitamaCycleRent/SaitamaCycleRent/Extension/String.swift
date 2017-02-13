@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 extension String {
     static func className(_ aClass: AnyClass) -> String {
@@ -108,31 +107,5 @@ extension String {
             boldString.addAttributes(boldFontAttribute, range: (self.lowercased() as NSString).range(of: boldPartsOfString[i].lowercased() as String))
         }
         return boldString
-    }
-    func JSONValue() -> AnyObject?
-    {
-        
-        let data = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        if let jsonData = data
-        {do{
-            let message = try JSONSerialization.jsonObject(with: jsonData, options:.mutableContainers)
-            if let jsonResult = message as? JSON
-            {
-                return jsonResult as AnyObject?
-            }
-            if let jsonArray = message as? Array<JSON>
-            {
-                   return jsonArray as AnyObject
-            }
-            if let stringArray = message as? Array<String>
-            {
-                return stringArray as AnyObject
-            }
-            else
-            {
-                return nil
-            }
-        }
-        catch _ as NSError{return nil}}else{return nil}
     }
 }
