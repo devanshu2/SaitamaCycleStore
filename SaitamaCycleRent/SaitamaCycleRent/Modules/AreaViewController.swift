@@ -65,7 +65,7 @@ class AreaViewController: BaseViewController {
         weak var weakSelf = self
         let alert = UIAlertController(title: title, message: NSLocalizedString("Do you want to rent?", comment: "Saitama"), preferredStyle: .alert)
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Saitama"), style: .default) { (yesAction) in
-            self.performSegue(withIdentifier: Constants.Segue.AreaToPay, sender: id)
+            weakSelf?.performSegue(withIdentifier: Constants.Segue.AreaToPay, sender: id)
         }
         let no = UIAlertAction(title: NSLocalizedString("No", comment: "Saitama"), style: .cancel, handler: nil)
         alert.addAction(yes)
