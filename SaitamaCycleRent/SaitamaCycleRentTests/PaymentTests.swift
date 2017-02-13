@@ -23,10 +23,36 @@ class PaymentTests: XCTestCase {
         super.tearDown()
     }
     
-    func testValid() {
+    func testValidCase() {
         self.paymentModel.number = "1234567890123456"
         self.paymentModel.name = "Devanshu"
-        self.paymentModel.expiration = "01/20"
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "20"
+        self.paymentModel.code = "111"
+        var isThereError = false
+        do {
+            try self.paymentModel.rent(withCompletionHandler: { (accessToken, error, errorMessage) in
+                
+            })
+        } catch RentPaymentCallError.invalidCode {
+            isThereError = true
+        } catch RentPaymentCallError.invalidNumber {
+            isThereError = true
+        } catch RentPaymentCallError.blankName {
+            isThereError = true
+        } catch RentPaymentCallError.invalidExpiry {
+            isThereError = true
+        } catch {
+            isThereError = true
+        }
+        XCTAssertFalse(isThereError, "Expected was false: \(isThereError)")
+    }
+    
+    func testInValidWithNumber() {
+        self.paymentModel.number = "1237890123456"
+        self.paymentModel.name = "Devanshu"
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "20"
         self.paymentModel.code = "111"
         var isThereError = false
         do {
@@ -45,14 +71,41 @@ class PaymentTests: XCTestCase {
             isThereError = true
         }
         
-        XCTAssertFalse(isThereError, "Expected was false")
+        XCTAssertTrue(isThereError, "Expected was true")
     }
     
-    func testInValid() {
-        self.paymentModel.number = "1237890123456"
-        self.paymentModel.name = "Devanshu"
-        self.paymentModel.expiration = "01/20"
+    func testInValidWithName() {
+        self.paymentModel.number = "1234567890123456"
+        self.paymentModel.name = ""
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "20"
         self.paymentModel.code = "111"
+        var isThereError = false
+        do {
+            try self.paymentModel.rent(withCompletionHandler: { (accessToken, error, errorMessage) in
+                
+            })
+        } catch RentPaymentCallError.invalidCode {
+            isThereError = true
+        } catch RentPaymentCallError.invalidNumber {
+            isThereError = true
+        } catch RentPaymentCallError.blankName {
+            isThereError = true
+        } catch RentPaymentCallError.invalidExpiry {
+            isThereError = true
+        } catch {
+            isThereError = true
+        }
+        
+        XCTAssertTrue(isThereError, "Expected was true")
+    }
+    
+    func testInValidWithCode() {
+        self.paymentModel.number = "1234567890123456"
+        self.paymentModel.name = "Devanshu"
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "20"
+        self.paymentModel.code = "11"
         var isThereError = false
         do {
             try self.paymentModel.rent(withCompletionHandler: { (accessToken, error, errorMessage) in
@@ -76,7 +129,8 @@ class PaymentTests: XCTestCase {
     func testInValidOutbound() {
         self.paymentModel.number = "123456782343432423423423424234234234234234234234234234290123456"
         self.paymentModel.name = "Devanshu"
-        self.paymentModel.expiration = "01/20"
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "20"
         self.paymentModel.code = "11341"
         var isThereError = false
         do {
@@ -101,7 +155,8 @@ class PaymentTests: XCTestCase {
     func testInValidExpiry() {
         self.paymentModel.number = "1234567890123456"
         self.paymentModel.name = "Devanshu"
-        self.paymentModel.expiration = "01/15"
+        self.paymentModel.expirationMonth = "01"
+        self.paymentModel.expirationYear = "11"
         self.paymentModel.code = "111"
         var isThereError = false
         do {

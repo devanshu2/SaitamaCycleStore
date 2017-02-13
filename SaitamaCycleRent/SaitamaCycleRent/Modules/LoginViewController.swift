@@ -72,6 +72,7 @@ class LoginViewController: BaseViewController {
         self.userModel.clearCredentials()
         self.userModel.cancelActiveAPICallTask()
         self.pageState = .welcome
+        self.contentTable.reloadData()
         super.viewWillDisappear(animated)
     }
     
@@ -105,7 +106,9 @@ class LoginViewController: BaseViewController {
                     //success
                     if weakSelf != nil {
                         AppFactory.shared.setUserToken(accessToken!)
-                        weakSelf?.performSegue(withIdentifier: Constants.Segue.LoginToArea, sender: nil)
+                        DispatchQueue.main.async(execute: {
+                            weakSelf?.performSegue(withIdentifier: Constants.Segue.LoginToArea, sender: nil)
+                        })
                     }
                 }
                 else {

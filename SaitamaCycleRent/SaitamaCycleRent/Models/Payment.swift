@@ -11,8 +11,53 @@ import Foundation
 class Payment: BaseModel {
     public var number:String?
     public var name:String?
-    public var expiration:String?
+    public var expiration:String? {
+        get {
+            if self.expirationMonth == nil || self.expirationYear == nil {
+                return nil
+            }
+            else {
+                if self.expirationMonth!.isNumeric() && self.expirationYear!.isNumeric() {
+                    let eM = Int(self.expirationMonth!)!
+                    let eY = Int(self.expirationYear!)!
+                    let date = Date()
+                    let calendar = Calendar.current
+                    
+                    let sYear = String(calendar.component(.year, from: date))
+                    let year = Int(sYear.substring(from:sYear.index(sYear.endIndex, offsetBy: -2)))!
+                    let month = calendar.component(.month, from: date)
+                    var allCool = false
+                    if eM > 12 || eM < 1 {
+                        allCool = false
+                    }
+                    else if year > eY {
+                        allCool = false
+                    }
+                    else if year < eY {
+                        allCool = true
+                    }
+                    else if year == eY && month < eM {
+                        allCool = true
+                    }
+                    else {
+                        allCool = false
+                    }
+                    if allCool {
+                        return String(eM) + "/" + String(eY)
+                    }
+                    else {
+                        return nil
+                    }
+                }
+                else {
+                    return nil
+                }
+            }
+        }
+    }
     public var code:String?
+    public var expirationMonth:String?
+    public var expirationYear:String?
     private let kAPIURL = URL(string: Constants.API.Server + Constants.API.EndPoint.Rent)
 
     private let kNumber = "number"
@@ -32,16 +77,6 @@ class Payment: BaseModel {
         }
         
         guard self.expiration != nil else {
-            throw RentPaymentCallError.invalidExpiry
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/YY"
-        let eData = dateFormatter.date(from: self.expiration!)
-        guard eData != nil else {
-            throw RentPaymentCallError.invalidExpiry
-        }
-        let currentData = Date()
-        guard eData! > currentData else {
             throw RentPaymentCallError.invalidExpiry
         }
         guard ((self.code != nil) && ((self.code?.length)! == Constants.Restrictions.ccCode)) else {

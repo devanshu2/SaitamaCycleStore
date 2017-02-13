@@ -53,7 +53,8 @@ class PaymentViewController: BaseViewController {
             let selectedMonth = self.picker.selectedMonth
             let selectedYear = self.picker.selectedYear
             let last2 = selectedYear.substring(from:selectedYear.index(selectedYear.endIndex, offsetBy: -2))
-            self.paymentModel.expiration = "\(selectedMonth)/\(last2)"
+            self.paymentModel.expirationMonth = selectedMonth
+            self.paymentModel.expirationYear = selectedYear
             self.contentTable.reloadData()
         }
         self.activeTextField?.resignFirstResponder()
@@ -225,10 +226,7 @@ extension PaymentViewController: UITextFieldDelegate {
         else if textField.tag == 1 {
             self.paymentModel.name = textField.text
         }
-        else if textField.tag == 2 {
-            self.paymentModel.expiration = textField.text
-        }
-        else {
+        else if textField.tag == 3 {
             self.paymentModel.code = textField.text
         }
     }
