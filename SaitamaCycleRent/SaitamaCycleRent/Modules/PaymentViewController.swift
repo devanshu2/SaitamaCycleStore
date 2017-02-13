@@ -17,6 +17,9 @@ class PaymentViewController: BaseViewController {
     fileprivate lazy var paymentModel = Payment()
     fileprivate var picker:CCDatePickerView!
     public var rentID:String?
+    
+    // MARK: - Life cycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,10 +43,34 @@ class PaymentViewController: BaseViewController {
         super.viewWillDisappear(animated)
     }
     
+    // MARK: - Actions
     @objc private func popController() {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc fileprivate func toolBarButtonDoneAction(_ sender:UIBarButtonItem) {
+        if sender.tag == 2 {
+            let selectedMonth = self.picker.selectedMonth
+            let selectedYear = self.picker.selectedYear
+            let last2 = selectedYear.substring(from:selectedYear.index(selectedYear.endIndex, offsetBy: -2))
+            self.paymentModel.expiration = "\(selectedMonth)/\(last2)"
+            self.contentTable.reloadData()
+        }
+        self.activeTextField?.resignFirstResponder()
+    }
+    
+    private func callSuccessMessage() {
+        DispatchQueue.main.async {
+            weak var weakSelf = self
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Rented!!", comment: "Payment"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Payment"), style: .default, handler: { (action) in
+                weakSelf?.popController()
+            }))
+            weakSelf?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Api call
     @IBAction func payNow(_ sender:Any?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         weak var weakSelf = self
@@ -84,30 +111,9 @@ class PaymentViewController: BaseViewController {
             self.displayError(withMessage: NSLocalizedString("Unknown Error Occured.", comment: "Login"), retrySelector: #selector(self.payNow(_:)))
         }
     }
-    
-    @objc fileprivate func toolBarButtonDoneAction(_ sender:UIBarButtonItem) {
-        if sender.tag == 2 {
-            let selectedMonth = self.picker.selectedMonth
-            let selectedYear = self.picker.selectedYear
-            let last2 = selectedYear.substring(from:selectedYear.index(selectedYear.endIndex, offsetBy: -2))
-            self.paymentModel.expiration = "\(selectedMonth)/\(last2)"
-            self.contentTable.reloadData()
-        }
-        self.activeTextField?.resignFirstResponder()
-    }
-    
-    private func callSuccessMessage() {
-        DispatchQueue.main.async {
-            weak var weakSelf = self
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("Rented!!", comment: "Payment"), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Payment"), style: .default, handler: { (action) in
-                weakSelf?.popController()
-            }))
-            weakSelf?.present(alert, animated: true, completion: nil)
-        }
-    }
 }
 
+// MARK: - Table data source
 extension PaymentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -166,6 +172,7 @@ extension PaymentViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Table delegate
 extension PaymentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
@@ -184,6 +191,7 @@ extension PaymentViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Text field delegate
 extension PaymentViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

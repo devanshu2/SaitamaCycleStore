@@ -45,6 +45,7 @@ class LoginViewController: BaseViewController {
     
     fileprivate lazy var userModel = User()
     
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,6 +94,7 @@ class LoginViewController: BaseViewController {
         self.activeTextField?.resignFirstResponder()
     }
     
+    // MARK: - API Call
     @objc fileprivate func authenticateUser() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         weak var weakSelf = self
@@ -190,6 +192,7 @@ class LoginViewController: BaseViewController {
     }
 }
 
+// MARK: - Table data source
 extension LoginViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch self.pageState {
@@ -317,6 +320,7 @@ extension LoginViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Table delegates
 extension LoginViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
@@ -362,6 +366,7 @@ extension LoginViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Text field delegates
 extension LoginViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 
+//Base class for uiview controllers
 public class BaseViewController: UIViewController {
 
     override public func viewDidLoad() {
@@ -18,6 +19,7 @@ public class BaseViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
+    //Display error in main thread with message and retry selector if any
     public func displayError(withMessage message:String, retrySelector:Selector?) {
         DispatchQueue.main.async {
             weak var weakSelf = self
@@ -34,12 +36,14 @@ public class BaseViewController: UIViewController {
         }
     }
     
+    //show loader on main thread
     public func showLoaderOnMainThread() {
         DispatchQueue.main.async {
             MBProgressHUD.showAdded(to: self.view, animated: true)
         }
     }
     
+    //hide loader on main thread
     public func hideLoaderOnMainThread() {
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)

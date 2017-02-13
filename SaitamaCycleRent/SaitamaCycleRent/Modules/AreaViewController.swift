@@ -15,6 +15,8 @@ class AreaViewController: BaseViewController {
     fileprivate var mapView: GMSMapView!
     fileprivate var clusterManager: GMUClusterManager!
     
+    // MARK: - Life Cycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,11 +54,27 @@ class AreaViewController: BaseViewController {
         destinationVC.rentID = sender as? String
     }
     
+    // MARK: - Actions
+    
     @objc private func logoutUser() {
         AppFactory.shared.signOutUser()
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
+    fileprivate func promptRent(withID id:String, andTitle title:String) {
+        weak var weakSelf = self
+        let alert = UIAlertController(title: title, message: NSLocalizedString("Do you want to rent?", comment: "Saitama"), preferredStyle: .alert)
+        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Saitama"), style: .default) { (yesAction) in
+            self.performSegue(withIdentifier: Constants.Segue.AreaToPay, sender: id)
+        }
+        let no = UIAlertAction(title: NSLocalizedString("No", comment: "Saitama"), style: .cancel, handler: nil)
+        alert.addAction(yes)
+        alert.addAction(no)
+        self.present(alert, animated: true, completion: nil)
+    }
 
+    // MARK: - Api call
+    
     @objc private func fetchPlaces() {
         self.placesModel.cancelActiveAPICallTask()
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -97,33 +115,23 @@ class AreaViewController: BaseViewController {
             
         }
     }
-    
-    fileprivate func promptRent(withID id:String, andTitle title:String) {
-        weak var weakSelf = self
-        let alert = UIAlertController(title: title, message: NSLocalizedString("Do you want to rent?", comment: "Saitama"), preferredStyle: .alert)
-        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Saitama"), style: .default) { (yesAction) in
-            self.performSegue(withIdentifier: Constants.Segue.AreaToPay, sender: id)
-        }
-        let no = UIAlertAction(title: NSLocalizedString("No", comment: "Saitama"), style: .cancel, handler: nil)
-        alert.addAction(yes)
-        alert.addAction(no)
-        self.present(alert, animated: true, completion: nil)
-    }
 }
 
+// MARK: - Map view delegate
 extension AreaViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let poiItem = marker.userData as? PlaceMarker {
             self.promptRent(withID: poiItem.id!, andTitle: poiItem.name!)
-            NSLog("Did tap marker for cluster item \(poiItem.name)")
+            debugPrint("Did tap marker for cluster item \(poiItem.name)")
             return true
         } else {
-            NSLog("Did tap a normal marker")
+            debugPrint("Did tap a normal marker")
         }
         return false
     }
 }
 
+// MARK: - Cluster Manager Delegate
 extension AreaViewController: GMUClusterManagerDelegate {
     func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
         let newCamera = GMSCameraPosition.camera(withTarget: cluster.position,
