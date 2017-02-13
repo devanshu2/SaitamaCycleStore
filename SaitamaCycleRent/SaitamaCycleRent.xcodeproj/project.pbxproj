@@ -43,11 +43,23 @@
 		429A69C71E511AB200A211BD /* CCDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69C61E511AB200A211BD /* CCDatePickerView.swift */; };
 		429A69D31E5136F200A211BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429A69D51E5136F200A211BD /* InfoPlist.strings */; };
 		429A69DC1E51877E00A211BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 429A69DE1E51877E00A211BD /* Localizable.strings */; };
+		429A69E51E51937700A211BD /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69E41E51937700A211BD /* UserTests.swift */; };
+		429A69E61E51942700A211BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054CD1E50892F00F1C46D /* User.swift */; };
+		429A69E71E5194CD00A211BD /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054CF1E508D1C00F1C46D /* BaseModel.swift */; };
+		429A69E81E5194E600A211BD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054B21E5058C600F1C46D /* Constants.swift */; };
+		429A69E91E5194F500A211BD /* PublicEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054B41E5058C600F1C46D /* PublicEnums.swift */; };
+		429A69EA1E51950500A211BD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054BC1E505A0A00F1C46D /* String.swift */; };
+		429A69EB1E51955000A211BD /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054CA1E50868700F1C46D /* NetworkManger.swift */; };
+		429A69EC1E51958E00A211BD /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054B11E5058C600F1C46D /* AppFactory.swift */; };
+		429A69ED1E519B2000A211BD /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424054D71E50E6B300F1C46D /* Places.swift */; };
+		429A69EF1E519B5200A211BD /* PlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69EE1E519B5200A211BD /* PlaceTests.swift */; };
+		429A69F11E519C7D00A211BD /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69F01E519C7D00A211BD /* PlaceMarker.swift */; };
+		429A69F21E519D1D00A211BD /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69C41E51118400A211BD /* Payment.swift */; };
+		429A69F41E519D3200A211BD /* PaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A69F31E519D3200A211BD /* PaymentTests.swift */; };
 		42D11CDC1E50559F0070AF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CDB1E50559F0070AF86 /* AppDelegate.swift */; };
 		42D11CE11E50559F0070AF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CDF1E50559F0070AF86 /* Main.storyboard */; };
 		42D11CE61E50559F0070AF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CE51E50559F0070AF86 /* Assets.xcassets */; };
 		42D11CE91E50559F0070AF86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D11CE71E50559F0070AF86 /* LaunchScreen.storyboard */; };
-		42D11CF41E50559F0070AF86 /* SaitamaCycleRentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D11CF31E50559F0070AF86 /* SaitamaCycleRentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +138,10 @@
 		429A69E01E51878100A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		429A69E11E518EB300A211BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		429A69E31E518EB500A211BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		429A69E41E51937700A211BD /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		429A69EE1E519B5200A211BD /* PlaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTests.swift; sourceTree = "<group>"; };
+		429A69F01E519C7D00A211BD /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		429A69F31E519D3200A211BD /* PaymentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTests.swift; sourceTree = "<group>"; };
 		42D11CD81E50559F0070AF86 /* SaitamaCycleRent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaitamaCycleRent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D11CDB1E50559F0070AF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D11CE01E50559F0070AF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,7 +149,6 @@
 		42D11CE81E50559F0070AF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42D11CEA1E50559F0070AF86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D11CEF1E50559F0070AF86 /* SaitamaCycleRentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaitamaCycleRentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		42D11CF31E50559F0070AF86 /* SaitamaCycleRentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaitamaCycleRentTests.swift; sourceTree = "<group>"; };
 		42D11CF51E50559F0070AF86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6332FD262043CB48B604DB61 /* Pods-SaitamaCycleRent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaitamaCycleRent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaitamaCycleRent/Pods-SaitamaCycleRent.debug.xcconfig"; sourceTree = "<group>"; };
 		9890A87DDFDD04E06346EA7F /* Pods-SaitamaCycleRentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaitamaCycleRentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaitamaCycleRentTests/Pods-SaitamaCycleRentTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +238,7 @@
 				424054D71E50E6B300F1C46D /* Places.swift */,
 				424054CF1E508D1C00F1C46D /* BaseModel.swift */,
 				429A69C41E51118400A211BD /* Payment.swift */,
+				429A69F01E519C7D00A211BD /* PlaceMarker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,7 +360,9 @@
 		42D11CF21E50559F0070AF86 /* SaitamaCycleRentTests */ = {
 			isa = PBXGroup;
 			children = (
-				42D11CF31E50559F0070AF86 /* SaitamaCycleRentTests.swift */,
+				429A69E41E51937700A211BD /* UserTests.swift */,
+				429A69EE1E519B5200A211BD /* PlaceTests.swift */,
+				429A69F31E519D3200A211BD /* PaymentTests.swift */,
 				42D11CF51E50559F0070AF86 /* Info.plist */,
 			);
 			path = SaitamaCycleRentTests;
@@ -609,6 +627,7 @@
 				429A69C71E511AB200A211BD /* CCDatePickerView.swift in Sources */,
 				424054C51E505A0A00F1C46D /* UIColor.swift in Sources */,
 				424054C41E505A0A00F1C46D /* UIApplication.swift in Sources */,
+				429A69F11E519C7D00A211BD /* PlaceMarker.swift in Sources */,
 				424054D41E509C6D00F1C46D /* LoginViewController.swift in Sources */,
 				429A69C31E510F8000A211BD /* PaymentViewController.swift in Sources */,
 				424054D21E50975F00F1C46D /* BaseViewController.swift in Sources */,
@@ -624,7 +643,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D11CF41E50559F0070AF86 /* SaitamaCycleRentTests.swift in Sources */,
+				429A69EA1E51950500A211BD /* String.swift in Sources */,
+				429A69EF1E519B5200A211BD /* PlaceTests.swift in Sources */,
+				429A69E71E5194CD00A211BD /* BaseModel.swift in Sources */,
+				429A69F21E519D1D00A211BD /* Payment.swift in Sources */,
+				429A69EB1E51955000A211BD /* NetworkManger.swift in Sources */,
+				429A69E61E51942700A211BD /* User.swift in Sources */,
+				429A69F41E519D3200A211BD /* PaymentTests.swift in Sources */,
+				429A69EC1E51958E00A211BD /* AppFactory.swift in Sources */,
+				429A69E51E51937700A211BD /* UserTests.swift in Sources */,
+				429A69E81E5194E600A211BD /* Constants.swift in Sources */,
+				429A69E91E5194F500A211BD /* PublicEnums.swift in Sources */,
+				429A69ED1E519B2000A211BD /* Places.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

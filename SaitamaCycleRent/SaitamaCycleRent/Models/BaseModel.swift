@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class BaseModel: NSObject {
-    public lazy var apiManager = NetworkManger()
-    public var accessToken:String?
+open class BaseModel: NSObject {
+    open lazy var apiManager = NetworkManger()
+    open var accessToken:String?
     
-    public func cancelActiveAPICallTask() {
+    open func cancelActiveAPICallTask() {
         self.apiManager.cancelActiveTask()
     }
 }

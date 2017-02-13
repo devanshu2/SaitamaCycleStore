@@ -12,6 +12,7 @@ target 'SaitamaCycleRent' do
   target 'SaitamaCycleRentTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'GoogleMaps'
   end
 
 end

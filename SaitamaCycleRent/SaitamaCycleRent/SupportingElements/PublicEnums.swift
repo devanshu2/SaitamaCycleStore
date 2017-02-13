@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UserAuthenticationCallError: Error {
+public enum UserAuthenticationCallError: Error {
     case blankEmail
     case largeEmail
     case invalidEmail
@@ -16,14 +16,14 @@ enum UserAuthenticationCallError: Error {
     case largePassword
 }
 
-enum RentPaymentCallError: Error {
+public enum RentPaymentCallError: Error {
     case invalidNumber
     case blankName
     case invalidExpiry
     case invalidCode
 }
 
-enum UserRegisterCallError: Error {
+public enum UserRegisterCallError: Error {
     case blankEmail
     case largeEmail
     case invalidEmail
@@ -31,13 +31,13 @@ enum UserRegisterCallError: Error {
     case largePassword
 }
 
-enum LoginPageState {
+public enum LoginPageState {
     case welcome
     case login
     case register
 }
 
-enum NodeResponseErrorCode: String {
+public enum NodeResponseErrorCode: String {
     case invalidJson  = "0001A"
     case invalidCred  = "0001B"
     case invalidToken = "0001C"
@@ -56,7 +56,7 @@ enum NodeResponseErrorCode: String {
     }
 }
 
-enum NodeResponseStatusErrorCode: Int {
+public enum NodeResponseStatusErrorCode: Int {
     case badRequest   = 400
     case unauthorized = 401
     case forbidden    = 403

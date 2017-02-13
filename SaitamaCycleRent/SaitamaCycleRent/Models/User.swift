@@ -8,20 +8,20 @@
 
 import Foundation
 
-public class User: BaseModel {
-    public var email:String?
-    public var password:String?
+open class User: BaseModel {
+    open var email:String?
+    open var password:String?
     
     private let kAuthenticationURL = URL(string: Constants.API.Server + Constants.API.EndPoint.Authentication)
     
     private let kRegisterURL = URL(string: Constants.API.Server + Constants.API.EndPoint.Register)
     
-    public func clearCredentials() {
+    open func clearCredentials() {
         self.email = nil
         self.password = nil
     }
     
-    public func authentication(withCompletionHandler completionHandler: @escaping (String?, Error?, String?) -> Swift.Void) throws {
+    open func authentication(withCompletionHandler completionHandler: @escaping (String?, Error?, String?) -> Swift.Void) throws {
         
         guard ((self.email != nil) && ((self.email?.length)! > 0)) else {
             throw UserAuthenticationCallError.blankEmail
@@ -69,22 +69,22 @@ public class User: BaseModel {
         }
     }
     
-    public func register(withCompletionHandler completionHandler: @escaping (String?, Error?, String?) -> Swift.Void) throws {
+    open func register(withCompletionHandler completionHandler: @escaping (String?, Error?, String?) -> Swift.Void) throws {
         
         guard ((self.email != nil) && ((self.email?.length)! > 0)) else {
-            throw UserAuthenticationCallError.blankEmail
+            throw UserRegisterCallError.blankEmail
         }
         guard self.email!.length <= Constants.Restrictions.email else {
-            throw UserAuthenticationCallError.largeEmail
+            throw UserRegisterCallError.largeEmail
         }
         guard String.isValidateEmail(self.email!) else {
-            throw UserAuthenticationCallError.invalidEmail
+            throw UserRegisterCallError.invalidEmail
         }
         guard ((self.password != nil) && ((self.password?.length)! > 0)) else {
-            throw UserAuthenticationCallError.blankPassword
+            throw UserRegisterCallError.blankPassword
         }
         guard self.password!.length <= Constants.Restrictions.password else {
-            throw UserAuthenticationCallError.largePassword
+            throw UserRegisterCallError.largePassword
         }
         
         let postData = [Constants.kEmail:self.email!, Constants.kPassword:self.password!]

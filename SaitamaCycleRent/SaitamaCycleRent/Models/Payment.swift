@@ -40,7 +40,8 @@ class Payment: BaseModel {
         guard eData != nil else {
             throw RentPaymentCallError.invalidExpiry
         }
-        guard eData! < Date() else {
+        let currentData = Date()
+        guard eData! > currentData else {
             throw RentPaymentCallError.invalidExpiry
         }
         guard ((self.code != nil) && ((self.code?.length)! == Constants.Restrictions.ccCode)) else {

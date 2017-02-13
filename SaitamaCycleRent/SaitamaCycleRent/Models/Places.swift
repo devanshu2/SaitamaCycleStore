@@ -8,18 +8,6 @@
 
 import Foundation
 import CoreLocation
-import GoogleMaps
-
-public class PlaceMarker: NSObject, GMUClusterItem {
-    public var id:String?
-    public var name: String!
-    public var position: CLLocationCoordinate2D
-    init(withPlace place:Place) {
-        self.position = place.location!
-        self.name = place.name
-        self.id = place.id
-    }
-}
 
 public class Place: NSObject {
     public var location: CLLocationCoordinate2D?

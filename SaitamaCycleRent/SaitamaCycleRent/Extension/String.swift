@@ -6,7 +6,7 @@
 //  Copyright © 2017 Devanshu Saini devanshu2@gmail.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     static func className(_ aClass: AnyClass) -> String {

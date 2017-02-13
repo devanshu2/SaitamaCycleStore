@@ -9,21 +9,21 @@
 import Foundation
 
 
-public class NetworkManger: NSObject {
+open class NetworkManger: NSObject {
     
-    public var networkSession: URLSession?
-    public var networkDataTask: URLSessionDataTask?
+    open var networkSession: URLSession?
+    open var networkDataTask: URLSessionDataTask?
     
-    public func getSharedConfiguration(_ isEphemeral: Bool) -> URLSessionConfiguration {
+    open func getSharedConfiguration(_ isEphemeral: Bool) -> URLSessionConfiguration {
         let sessionConfiguration = isEphemeral ? URLSessionConfiguration.ephemeral : URLSessionConfiguration.default
         return sessionConfiguration
     }
     
-    public func cancelActiveTask() {
+    open func cancelActiveTask() {
         self.networkDataTask?.cancel()
     }
     
-    public func getDefaultHeaders() -> [String: String]? {
+    open func getDefaultHeaders() -> [String: String]? {
         var headerParams: Dictionary<String, String>?
         if let accessToken = AppFactory.shared.getCurrentUserToken() {
             headerParams = [Constants.kAuthorization: accessToken]
@@ -31,7 +31,7 @@ public class NetworkManger: NSObject {
         return headerParams
     }
     
-    public func postData(withParameters params:Dictionary<String , Any>, apiEndpoint apiURL: URL, withHeaderParams headerParams:[String: String]?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+    open func postData(withParameters params:Dictionary<String , Any>, apiEndpoint apiURL: URL, withHeaderParams headerParams:[String: String]?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
         var request = URLRequest(url: apiURL)
         
         if headerParams != nil {
@@ -67,7 +67,7 @@ public class NetworkManger: NSObject {
         self.networkDataTask?.resume()
     }
     
-    public func postData(withParameters params:Dictionary<String , Any>, apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+    open func postData(withParameters params:Dictionary<String , Any>, apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
         var headerData:[String:String] = ["Content-Type":"application/json"]
         if let defaultHeaders = getDefaultHeaders() {
             for (key, value) in defaultHeaders {
@@ -77,7 +77,7 @@ public class NetworkManger: NSObject {
         self.postData(withParameters: params, apiEndpoint: apiURL, withHeaderParams: headerData, completionHandler: completionHandler)
     }
     
-    public func getData(apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
+    open func getData(apiEndpoint apiURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) {
         var request = URLRequest(url: apiURL)
         if let defaultHeaders = getDefaultHeaders() {
             for (key, value) in defaultHeaders {
